@@ -1,0 +1,18 @@
+# Optional: where `just sync` pulls .bpmn files from. Read by scripts/sync.ts,
+# scripts/scaffold.ts and scripts/render-previews.ts. The viewer itself never
+# reads this file; it serves whatever is under diagrams/.
+#
+# The key is both the sidebar group and the directory under diagrams/.
+# Convention: <root>/<directory>/docs/processes/*.bpmn
+#
+# `pipeline` (optional) is a directory below `root` holding layout.mjs,
+# annotate.py and render.sh. It is NOT part of this repository: without it,
+# sync copies files as they are and the browser lays out files that have no
+# diagram interchange (DI).
+
+root: ~/code
+
+# pipeline: my-tooling/scripts/bpmn
+
+repos: {}
+  # my-service: my-service

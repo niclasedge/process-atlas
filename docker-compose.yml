@@ -1,0 +1,15 @@
+# Local run on :8088, serving the diagrams baked into the image.
+services:
+  process-atlas:
+    build: .
+    container_name: process-atlas
+    ports:
+      - "8088:8080"
+    environment:
+      # Read-only, like the deployed one — this container serves the image's
+      # baked-in copy of `diagrams/`, so anything written here would live inside
+      # the container and vanish with the next rebuild. Writing is `just edit`:
+      # the server on :8080 against the working tree, where a new .bpmn lands in
+      # git and can be committed.
+      ATLAS_EDIT: "0"
+    restart: unless-stopped

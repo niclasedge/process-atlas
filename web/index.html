@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Process Atlas</title>
+  </head>
+  <body>
+    <aside id="sidebar">
+      <h1>Process Atlas</h1>
+      <div id="process-list"></div>
+      <p id="corpus-errors" hidden></p>
+    </aside>
+
+    <main>
+      <header>
+        <nav id="breadcrumb"></nav>
+        <div id="actions">
+          <button id="new-process" hidden title="Create a new process">New</button>
+          <button id="save" hidden title="Write the diagram back to disk">Save</button>
+          <button id="fit" title="Fit the whole diagram">Fit</button>
+        </div>
+      </header>
+      <div id="canvas"></div>
+      <div id="status"></div>
+    </main>
+
+    <!-- The hover preview lives outside the sidebar so it is not clipped by its
+         overflow, and outside the flow so it never nudges the layout. -->
+    <div id="preview" hidden aria-hidden="true"></div>
+    <!-- Off-screen stage for rendering a preview the pipeline has not rendered:
+         a diagram created in edit mode has no PNG until the next `just sync`. -->
+    <div id="preview-stage" aria-hidden="true"></div>
+
+    <dialog id="new-dialog">
+      <form method="dialog">
+        <h2>New process</h2>
+        <label>
+          Repository
+          <input id="new-repo" list="repo-options" required
+                 pattern="[a-z0-9][a-z0-9_\-]*"
+                 title="Lowercase letters, digits, - and _" />
+          <datalist id="repo-options"></datalist>
+        </label>
+        <label>
+          Process ID
+          <input id="new-id" required pattern="[A-Za-z_][A-Za-z0-9_.\-]*"
+                 title="Starts with a letter; letters, digits, . - _" />
+          <small>A callActivity names this ID in <code>calledElement</code>.</small>
+        </label>
+        <label>
+          Name
+          <input id="new-name" placeholder="as shown in the sidebar" />
+        </label>
+        <p id="new-error" hidden></p>
+        <menu>
+          <!-- formnovalidate: a dialog form validates on *any* submit button,
+               so without it "Cancel" is blocked by the empty required id. -->
+          <button value="cancel" formnovalidate>Cancel</button>
+          <button id="new-submit" value="create" class="primary">Create</button>
+        </menu>
+      </form>
+    </dialog>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

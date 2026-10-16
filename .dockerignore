@@ -1,0 +1,10 @@
+# node_modules is the expensive one: several hundred MB shipped into the build
+# context on every `docker build`, only to be reinstalled from the lockfile in
+# stage one anyway.
+web/node_modules
+web/dist
+
+.git
+.github
+**/.DS_Store
+*.md

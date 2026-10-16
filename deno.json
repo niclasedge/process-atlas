@@ -1,0 +1,26 @@
+{
+  "name": "process-atlas",
+  "version": "0.2.0",
+  "exports": "./server/main.ts",
+  "tasks": {
+    "serve": "deno run --allow-net --allow-read --allow-write --allow-env server/main.ts",
+    "check": "deno check server/ scripts/*.ts",
+    "test": "deno test --allow-read --allow-write --allow-env --allow-run",
+    "previews": "deno run --allow-read --allow-write --allow-env --allow-run scripts/render-previews.ts",
+    "scaffold": "deno run --allow-read --allow-write --allow-env scripts/scaffold.ts"
+  },
+  "imports": {
+    "@std/assert": "jsr:@std/assert@^1.0.14",
+    "@std/http": "jsr:@std/http@^1.0.22",
+    "@std/path": "jsr:@std/path@^1.1.2",
+    "@std/yaml": "jsr:@std/yaml@^1.0.10"
+  },
+  "fmt": {
+    "lineWidth": 100,
+    "exclude": ["web/dist", "diagrams", "previews"]
+  },
+  "lint": {
+    "exclude": ["web", "diagrams", "previews"]
+  },
+  "exclude": ["web/node_modules", "web/dist", "previews"]
+}

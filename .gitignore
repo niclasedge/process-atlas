@@ -1,0 +1,12 @@
+node_modules/
+web/dist/
+__pycache__/
+.venv/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+*.bpmn.tmp
+
+# diagrams/ is NOT ignored: the corpus is the point of the service, and a
+# container built from a clean clone has to contain it. `just sync` regenerates.
+.DS_Store
